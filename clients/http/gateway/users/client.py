@@ -4,6 +4,9 @@ from typing import TypedDict
 
 
 class CreateUserRequestDict(TypedDict):
+    """
+    Структура данных для создания нового пользователя.
+    """
     email: str
     lastName: str
     firstName: str
@@ -24,7 +27,7 @@ class UsersGatewayHTTPClient(HTTPClient):
         """
         return self.get(f"/api/v1/users/{user_id}")
 
-    def create_user_api(self, request) -> Response:
+    def create_user_api(self, request: CreateUserRequestDict) -> Response:
         """
         Создание нового пользователя.
 
