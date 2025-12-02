@@ -11,13 +11,13 @@ create_user_response = users_gateway_client.create_user()
 print("create_user_response", create_user_response)
 
 open_debit_card_account_response = accounts_gateway_client.open_debit_card_account(
-    user_id = create_user_response["user"]["id"]
+    user_id = create_user_response.user.id
 )
 print("open_debit_card_account_response", open_debit_card_account_response)
 
 
 issue_virtual_card_response = cards_gateway_client.issue_virtual_card(
-    user_id=create_user_response["user"]["id"],
-    account_id=open_debit_card_account_response["account"]["id"]
+    user_id=create_user_response.user.id,
+    account_id=open_debit_card_account_response.account.id
 )
 print("issue_virtual_card_response", issue_virtual_card_response)
