@@ -35,6 +35,9 @@ from contracts.services.gateway.operations.rpc_make_bill_payment_operation_pb2 i
 from contracts.services.gateway.operations.rpc_make_cash_withdrawal_operation_pb2 import (
     MakeCashWithdrawalOperationRequest, MakeCashWithdrawalOperationResponse
 )
+from contracts.services.gateway.operations.rpc_make_top_up_operation_pb2 import  (
+    MakeTopUpOperationRequest, MakeTopUpOperationResponse
+)
 
 
 class OperationsGatewayGRPCClient(GRPCClient):
@@ -142,6 +145,15 @@ class OperationsGatewayGRPCClient(GRPCClient):
         """
         return self.stub.MakeCashWithdrawalOperation(request)
 
+    def make_top_up_operation_api(self, request: MakeTopUpOperationRequest) -> MakeTopUpOperationResponse:
+        """
+        Низкоуровневый вызов метода MakeTopUpOperation через gRPC.
+
+        :param request: gRPC-запрос с параметрами операции пополнения.
+        :return: Ответ от сервиса с информацией об операции пополнения.
+        """
+        return self.stub.MakeTopUpOperation(request)
+
     def get_operations(self, account_id: str) -> GetOperationsResponse:
         request = GetOperationsRequest(account_id=account_id)
         return self.get_operations_api(request)
@@ -213,8 +225,17 @@ class OperationsGatewayGRPCClient(GRPCClient):
         )
         return self.make_cash_withdrawal_operation_api(request)
 
+    def make_top_up_operation(self, card_id: str, account_id: str) -> MakeTopUpOperationResponse:
+        request = MakeTopUpOperationRequest(
+            card_id=card_id,
+            account_id=account_id,
+            status=fake.proto_enum(OperationStatus),
+            amount=fake.amount()
+        )
+        return self.make_top_up_operation_api(request)
 
-def build_documents_gateway_grpc_client() -> OperationsGatewayGRPCClient:
+
+def build_operations_gateway_grpc_client() -> OperationsGatewayGRPCClient:
     """
     Фабрика для создания экземпляра OperationsGatewayGRPCClient.
 
