@@ -51,7 +51,7 @@ class UsersGatewayGRPCClient(GRPCClient):
         request = GetUserRequest(id=user_id)
         return self.get_user_api(request)
 
-    def create_user(self, user_id: str) -> CreateUserResponse:
+    def create_user(self) -> CreateUserResponse:
         """
         Создание нового пользователя с фейковыми данными.
 
@@ -62,7 +62,7 @@ class UsersGatewayGRPCClient(GRPCClient):
             first_name=fake.first_name(),
             middle_name=fake.middle_name(),
             phone_number=fake.phone_number(),
-            email=fake.email(),
+            email=fake.email()
         )
         return self.create_user_api(request)
 
