@@ -51,13 +51,13 @@ class CardsGatewayHTTPClient(HTTPClient):
         return IssuePhysicalCardResponseSchema.model_validate_json(response.text)
 
 
-def build_cards_gateway_http_client() -> CardsGatewayHTTPClient:
+def build_cards_gateway_http_client(environment: Environment) -> CardsGatewayHTTPClient:
     """
     Функция создаёт экземпляр CardsGatewayHTTPClient с уже настроенным HTTP-клиентом.
 
     :return: Готовый к использованию CardsGatewayHTTPClient.
     """
-    return CardsGatewayHTTPClient(client=build_gateway_http_client())
+    return CardsGatewayHTTPClient(client=build_gateway_http_client(environment))
 
 
 def build_cards_gateway_locust_http_client(environment: Environment) -> CardsGatewayHTTPClient:
