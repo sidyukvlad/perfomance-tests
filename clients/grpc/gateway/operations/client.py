@@ -204,7 +204,7 @@ class OperationsGatewayGRPCClient(GRPCClient):
             card_id=card_id,
             amount=fake.amount(),
             status=fake.proto_enum(OperationStatus),
-            category=fake.proto_enum(OperationType)
+            category=fake.category()
         )
         return self.make_purchase_operation_api(request)
 

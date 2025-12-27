@@ -83,6 +83,7 @@ class SeedsBuilder:
         Returns:
             SeedCardResult: Результат с ID выпущенной карты
         """
+        print(SeedCardResult(card_id=response.card.id))
         return SeedCardResult(card_id=response.card.id)
 
     def build_virtual_card_result(
@@ -247,13 +248,13 @@ class SeedsBuilder:
                 self.build_transfer_operation_result(
                     card_id=card_id, account_id=account_id
                 )
-                for _ in range(plan.purchase_operations.count)
+                for _ in range(plan.transfer_operations.count)
             ],
             cash_withdrawal_operations=[
                 self.build_cash_withdrawal_operation_result(
                     card_id=card_id, account_id=account_id
                 )
-                for _ in range(plan.purchase_operations.count)
+                for _ in range(plan.cash_withdrawal_operations.count)
             ]
         )
 
@@ -305,13 +306,13 @@ class SeedsBuilder:
                 self.build_transfer_operation_result(
                     card_id=card_id, account_id=account_id
                 )
-                for _ in range(plan.purchase_operations.count)
+                for _ in range(plan.transfer_operations.count)
             ],
             cash_withdrawal_operations=[
                 self.build_cash_withdrawal_operation_result(
                     card_id=card_id, account_id=account_id
                 )
-                for _ in range(plan.purchase_operations.count)
+                for _ in range(plan.cash_withdrawal_operations.count)
             ]
         )
 

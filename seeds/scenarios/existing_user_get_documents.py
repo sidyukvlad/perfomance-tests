@@ -19,8 +19,6 @@ class ExistingUserGetDocumentsSeedsScenario(SeedsScenario):
                 count=100,
                 savings_accounts=SeedAccountsPlan(count=1),
                 deposit_accounts=SeedAccountsPlan(count=1),
-
-
             )
         )
 
