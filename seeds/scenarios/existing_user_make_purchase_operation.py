@@ -2,7 +2,7 @@ from seeds.scenario import SeedsScenario
 from seeds.schema.plan import SeedsPlan, SeedUsersPlan, SeedAccountsPlan, SeedCardsPlan
 
 
-class ExistingUserMakePurchaseOperation(SeedsScenario):
+class ExistingUserMakePurchaseOperationSeedsScenario(SeedsScenario):
     @property
     def plan(self) -> SeedsPlan:
         return SeedsPlan(
@@ -21,7 +21,7 @@ class ExistingUserMakePurchaseOperation(SeedsScenario):
 
 
 if __name__ == '__main__':
-    seeds_scenario = ExistingUserMakePurchaseOperation()
+    seeds_scenario = ExistingUserMakePurchaseOperationSeedsScenario()
     seeds_scenario.build()
 
     seeds_scenario.load()
