@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, ConfigDict
 from enum import StrEnum
-from datetime import date
+from datetime import datetime
 from tools.fakers import fake
 
 
@@ -31,7 +31,7 @@ class OperationSchema(BaseModel):
     amount: float
     card_id: str = Field(alias="cardId")
     category: str
-    created_at: date = Field(alias="createdAt")
+    created_at: datetime = Field(alias="createdAt")
     account_id: str = Field(alias="accountId")
 
 
